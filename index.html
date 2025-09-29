@@ -6,7 +6,7 @@
     <title>Comparativa Programas de Cultura</title>
     <!-- Carga de Tailwind CSS CDN para un estilo moderno y responsivo -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Estilos base: Minimalista con Rojo, Gris y Blanco */
         body {
@@ -50,24 +50,24 @@
         /* Estilo de los títulos (Rojo y Gris Oscuro) - AHORA USANDO CLAMP PARA ESCALADO */
         .slide h1 {
             color: #b91c1c; /* Rojo fuerte (Tailwind red-700) */
-            font-weight: 700;
+            font-weight: 800; /* Más peso para títulos */
             margin-bottom: 1.5rem;
             text-align: center;
-            /* Escalado: Mínimo 2rem, ideal 4.5vw, máximo 2.8rem */
-            font-size: clamp(2rem, 4.5vw, 2.8rem); 
+            /* AUMENTO AGRESIVO: Mínimo 2.5rem, ideal 5.5vw, máximo 3.2rem */
+            font-size: clamp(2.5rem, 5.5vw, 3.2rem); 
         }
 
         .slide h2 {
             color: #4b5563; /* Gris oscuro (Tailwind gray-600) */
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 1rem;
-            /* Escalado: Mínimo 1.5rem, ideal 3.5vw, máximo 2.2rem */
-            font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+            /* AUMENTO AGRESIVO: Mínimo 1.8rem, ideal 4.0vw, máximo 2.5rem */
+            font-size: clamp(1.8rem, 4.0vw, 2.5rem);
         }
         
         /* Asegura que <strong> sea visiblemente negrita */
         .slide ul strong, .compare-table strong, .comparison-box strong {
-            font-weight: 700;
+            font-weight: 800;
             color: #b91c1c; /* Las negritas en rojo para mayor énfasis */
         }
 
@@ -80,8 +80,8 @@
         }
 
         .slide ul li {
-            /* Escalado: Mínimo 1.2rem, ideal 2.5vw, máximo 1.7rem */
-            font-size: clamp(1.2rem, 2.5vw, 1.7rem); 
+            /* AUMENTO AGRESIVO: Mínimo 1.4rem, ideal 3.0vw, máximo 2.0rem */
+            font-size: clamp(1.4rem, 3.0vw, 2.0rem); 
             line-height: 1.8;
             margin-bottom: 1rem;
             padding-left: 2em;
@@ -113,8 +113,8 @@
         .compare-table th, .compare-table td {
             padding: 1rem;
             border: 1px solid #e5e7eb;
-            /* Escalado: Mínimo 1rem, ideal 1.8vw, máximo 1.2rem */
-            font-size: clamp(1rem, 1.8vw, 1.2rem); 
+            /* AUMENTO: Mínimo 1rem, ideal 2.0vw, máximo 1.4rem */
+            font-size: clamp(1rem, 2.0vw, 1.4rem); 
         }
 
         .compare-table th {
