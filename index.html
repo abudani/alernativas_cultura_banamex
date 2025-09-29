@@ -47,22 +47,22 @@
         }
 
 
-        /* Estilo de los títulos (Rojo y Gris Oscuro) - TODOS EN TEXT-4XL */
+        /* Estilo de los títulos (Rojo y Gris Oscuro) - AHORA USANDO CLAMP PARA ESCALADO */
         .slide h1 {
             color: #b91c1c; /* Rojo fuerte (Tailwind red-700) */
             font-weight: 700;
             margin-bottom: 1.5rem;
             text-align: center;
-            /* AUMENTO: De 2.25rem a 2.5rem */
-            font-size: 2.5rem; 
+            /* Escalado: Mínimo 2rem, ideal 4.5vw, máximo 2.8rem */
+            font-size: clamp(2rem, 4.5vw, 2.8rem); 
         }
 
         .slide h2 {
             color: #4b5563; /* Gris oscuro (Tailwind gray-600) */
             font-weight: 600;
             margin-bottom: 1rem;
-            /* AUMENTO: De 1.875rem a 2.1rem */
-            font-size: 2.1rem;
+            /* Escalado: Mínimo 1.5rem, ideal 3.5vw, máximo 2.2rem */
+            font-size: clamp(1.5rem, 3.5vw, 2.2rem);
         }
         
         /* Asegura que <strong> sea visiblemente negrita */
@@ -73,16 +73,15 @@
 
         /* Estilo de los bullets (listas) */
         .slide ul {
-            /* Max width se ajusta en el HTML, aquí se define el estilo de fuente */
             list-style: none;
             padding-left: 0;
             margin-top: 1.5rem;
-            width: 100%; /* Ocupa el 100% del contenedor padre (.max-w-5xl) */
+            width: 100%; 
         }
 
         .slide ul li {
-            /* AUMENTO: De 1.3rem a 1.45rem para mejor legibilidad */
-            font-size: 1.45rem; 
+            /* Escalado: Mínimo 1.2rem, ideal 2.5vw, máximo 1.7rem */
+            font-size: clamp(1.2rem, 2.5vw, 1.7rem); 
             line-height: 1.8;
             margin-bottom: 1rem;
             padding-left: 2em;
@@ -114,8 +113,8 @@
         .compare-table th, .compare-table td {
             padding: 1rem;
             border: 1px solid #e5e7eb;
-            /* AUMENTO: De 1.05rem a 1.15rem */
-            font-size: 1.15rem; 
+            /* Escalado: Mínimo 1rem, ideal 1.8vw, máximo 1.2rem */
+            font-size: clamp(1rem, 1.8vw, 1.2rem); 
         }
 
         .compare-table th {
@@ -215,7 +214,8 @@
         }
 
         .comparison-box h3 {
-            font-size: 1.5rem;
+            /* Escalado */
+            font-size: clamp(1.4rem, 2.5vw, 1.6rem);
             font-weight: 700;
             margin-bottom: 1rem;
             color: #b91c1c;
@@ -224,7 +224,7 @@
         .comparison-box.talent h3 {
             color: #4b5563;
         }
-        
+
         /* 3. Botón "Volver" */
         .back-button {
             position: absolute;
@@ -548,3 +548,4 @@
 
 </body>
 </html>
+
