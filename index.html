@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparativa Programas de Cultura</title>
+    <!-- Carga de Tailwind CSS CDN para un estilo moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos base: Minimalista con Rojo, Gris y Blanco */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff; /* Fondo blanco */
+            color: #374151; /* Texto gris oscuro */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; 
+        }
+
+        .presentation-container {
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        /* Estilo de cada diapositiva */
+        .slide {
+            height: 100vh;
+            width: 100vw;
+            flex-shrink: 0;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1.5rem; /* Ajuste de padding para ganar espacio en móvil */
+            box-sizing: border-box;
+            background-color: white;
+            position: relative; /* Necesario para posicionar el botón Volver */
+        }
+        
+        /* Ajuste de padding para pantallas más grandes */
+        @media (min-width: 768px) {
+            .slide {
+                padding: 2rem 4rem;
+            }
+        }
+
+
+        /* Estilo de los títulos (Rojo y Gris Oscuro) - TODOS EN TEXT-4XL */
+        .slide h1 {
+            color: #b91c1c; /* Rojo fuerte (Tailwind red-700) */
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 2.25rem; /* text-4xl */
+        }
+
+        .slide h2 {
+            color: #4b5563; /* Gris oscuro (Tailwind gray-600) */
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.875rem; /* text-3xl */
+        }
+        
+        /* Asegura que <strong> sea visiblemente negrita */
+        .slide ul strong, .compare-table strong, .comparison-box strong {
+            font-weight: 700;
+            color: #b91c1c; /* Las negritas en rojo para mayor énfasis */
+        }
+
+        /* Estilo de los bullets (listas) */
+        .slide ul {
+            max-width: 900px;
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1.5rem;
+        }
+
+        .slide ul li {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            padding-left: 2em;
+            position: relative;
+            text-align: left;
+        }
+
+        .slide ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #b91c1c; /* Bullet en rojo */
+            font-size: 1.5em;
+            line-height: 1;
+            top: 0;
+        }
+
+        /* Estilo de la tabla de comparación sintética */
+        .compare-table {
+            width: 90%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .compare-table th, .compare-table td {
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            font-size: 1rem;
+        }
+
+        .compare-table th {
+            background-color: #4b5563; /* Gris oscuro para encabezados de tabla */
+            color: white;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .compare-table td {
+            background-color: white;
+            text-align: center;
+        }
+        
+        .compare-table tr:nth-child(even) td {
+            background-color: #f3f4f6; /* Gris muy claro para filas pares */
+        }
+        
+        /* Flechas Laterales de Navegación */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #b91c1c; /* Flechas rojas */
+            border: 2px solid #b91c1c;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-arrow:hover:not(:disabled) {
+            background: #b91c1c;
+            color: white;
+        }
+
+        .nav-arrow:disabled {
+            opacity: 0.3;
+            cursor: default;
+            border-color: #9ca3af;
+        }
+
+        #prevBtn { left: 20px; }
+        #nextBtn { right: 20px; }
+        
+        /* 1. Contador de Slides: Arriba a la derecha y más pequeño */
+        .slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            color: #374151;
+            font-weight: 600;
+            background-color: #e5e7eb; /* Gris claro */
+            border-radius: 0.5rem;
+            z-index: 100;
+        }
+
+        /* Estilos para la comparación de modelos */
+        .comparison-container {
+            display: flex;
+            flex-direction: column; /* Apila por defecto para responsive */
+            gap: 2rem; /* Reducido el gap */
+            margin-top: 3rem;
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        /* En pantallas medianas y mayores, usa flex (columnas) */
+        @media (min-width: 768px) {
+            .comparison-container {
+                flex-direction: row;
+                gap: 3rem;
+            }
+        }
+
+        .comparison-box {
+            flex: 1;
+            padding: 1.5rem; /* Reducido el padding para caber mejor */
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .comparison-box.territorial {
+            border-top: 8px solid #b91c1c;
+        }
+
+        .comparison-box.talent {
+            border-top: 8px solid #4b5563;
+        }
+
+        .comparison-box h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #b91c1c;
+        }
+
+        .comparison-box.talent h3 {
+            color: #4b5563;
+        }
+        
+        /* 3. Botón "Volver" */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+            background-color: #4b5563; /* Gris oscuro */
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            z-index: 60; /* Sobre las flechas principales */
+        }
+        
+        .back-button:hover {
+            background-color: #374151;
+        }
+
+        /* 2. Botones de Selección de Programa */
+        .program-select-button {
+            padding: 1rem 2rem;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 0.75rem;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .program-select-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-red {
+            background-color: #b91c1c;
+            color: white;
+        }
+
+        .btn-red:hover {
+            background-color: #991b1b;
+        }
+
+        .btn-gray {
+            background-color: #4b5563;
+            color: white;
+        }
+
+        .btn-gray:hover {
+            background-color: #374151;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="presentation-container">
+
+    <!-- Slide 1: Título y Contexto General (INDEX 0) -->
+    <div class="slide" id="slide1">
+        <div class="max-w-4xl text-center">
+            <h1 class="text-4xl">Programas de Fomento Social y Cultural de Banamex: alternativas de desarrollo</h1>
+            <p class="text-2xl text-gray-600 mt-4">Análisis Comparativo para la Inversión Cultural Estratégica</p>
+            <div class="mt-16 space-y-4">
+                <p class="text-xl font-semibold text-red-700">Alternativa A: Cultura que Inspira: Raíces de Progreso (Foco Territorial)</p>
+                <p class="text-xl font-semibold text-gray-700">Alternativa B: Hecho a Mano Banamex: Economía Cultural Formal (Foco Talento)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Comparación de Modelos (INDEX 1) - FUENTE PARA BOTÓN VOLVER -->
+    <div class="slide" id="slide2">
+        <h1 class="text-4xl">OBJETIVOS CENTRALES: ¿QUÉ BUSCAN LOS PROGRAMAS?</h1>
+        <h2 class="text-3xl">Dos Modelos, Dos Tipos de Impacto</h2>
+        
+        <div class="comparison-container">
+            <div class="comparison-box territorial">
+                <h3>Raíces de Progreso (Modelo Pueblo Mágico)</h3>
+                <p class="text-base">Se enfoca en el <strong>territorio</strong> y el <strong>patrimonio físico</strong> como motor económico.</p>
+                <p class="mt-4 text-gray-600 text-sm"><strong>Meta:</strong> Generar desarrollo económico a través de la restauración y la cadena de valor turística. <strong>Impacto Colectivo</strong>.</p>
+                <button class="program-select-button btn-red" onclick="showSlide(2)">Ver Programa 1</button>
+            </div>
+            
+            <div class="comparison-box talent">
+                <h3>Hecho a Mano (Modelo Isaac Hernández)</h3>
+                <p class="text-base">Se enfoca en el <strong>talento individual</strong> y la <strong>profesionalización empresarial</strong>.</p>
+                <p class="mt-4 text-gray-600 text-sm"><strong>Meta:</strong> Convertir la creatividad en un negocio formal, bancable y sostenible. <strong>Impacto Individual/Empresarial</strong>.</p>
+                <button class="program-select-button btn-gray" onclick="showSlide(6)">Ver Programa 2</button>
+            </div>
+        </div>
+        <p class="mt-8 text-lg text-gray-500">O use las flechas laterales para la revisión completa y la síntesis final.</p>
+    </div>
+    
+    <!-- INICIO: PROGRAMA 1 (RAÍCES DE PROGRESO) - COMIENZA EN INDEX 2 -->
+
+    <!-- Slide 3: Programa 1 - Visión y Modelo (INDEX 2) -->
+    <div class="slide" id="slide3">
+        <button class="back-button" onclick="showSlide(1)">Volver</button>
+        <div class="max-w-4xl">
+            <h1 class="text-4xl">PROGRAMA 1: RAÍCES DE PROGRESO | MODELO Y VISIÓN</h1>
+            <h2 class="text-3xl">Inversión Catalizadora y Patrimonio Tangible</h2>
+            <ul>
+                <li><strong>Misión:</strong> Transformar el <strong>patrimonio cultural tangible</strong> en un activo económico productivo para la comunidad.</li>
+                <li><strong>Foco:</strong> No es solo una donación, es un modelo que busca la **funcionalidad económica** del activo restaurado.</li>
+                <li><strong>Diseño DAC:</strong> El programa aprovecha la robustez del DAC, enfocándose en la **Perdurabilidad y Sostenibilidad Económica** del proyecto.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 4: Programa 1 - Fases de Intervención (INDEX 3) -->
+    <div class="slide" id="slide4">
+        <button class="back-button" onclick="showSlide(1)">Volver</button>
+        <div class="max-w-4xl">
+            <h1 class="text-4xl">Raíces de Progreso: Fases de Intervención</h1>
+            <h2 class="text-3xl">El Rol de Banamex como Catalizador</h2>
+            <ul>
+                <li><strong>Fase I - Identificación:</strong> Banamex lidera el filtro técnico para seleccionar proyectos con alto potencial de retorno turístico ("Ancla Turística").</li>
+                <li><strong>Fase II - Intervención:</strong> Aportar el <strong>capital semilla</strong> para la restauración del Ancla y financiar el **Programa de Aceleración Local** (capacitación).</li>
+                <li><strong>Fase III - Multiplicador:</strong> Usar su prestigio como **"sello de confianza"** para atraer inversión de otros aliados ($X por cada $1 aportado por Banamex).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 5: Programa 1 - Sostenibilidad (INDEX 4) -->
+    <div class="slide" id="slide5">
+        <button class="back-button" onclick="showSlide(1)">Volver</button>
+        <div class="max-w-4xl">
+            <h1 class="text-4xl">Raíces de Progreso: Autonomía y Perdurabilidad</h1>
+            <h2 class="text-3xl">Mecanismos para la Sostenibilidad a Largo Plazo</h2>
+            <ul>
+                <li><strong>Fondo de Mantenimiento:</strong> Creación de un **Fondo Comunitario** nutrido por un porcentaje de las ventas turísticas para asegurar el mantenimiento del activo.</li>
+                <li><strong>Enfoque:</strong> Monitorear KPIs de generación de ingresos para asegurar la **autonomía financiera** del proyecto restaurado.</li>
+                <li><strong>Estrategia:</strong> Generar flujo turístico y apalancar la inversión pública/privada en la comunidad.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 6: Programa 1 - Métricas (INDEX 5) -->
+    <div class="slide" id="slide6">
+        <button class="back-button" onclick="showSlide(1)">Volver</button>
+        <div class="max-w-4xl">
+            <h1 class="text-4xl">Raíces de Progreso: Medición de Impacto (El "PIB Local")</h1>
+            <h2 class="text-3xl">Métricas centradas en la transformación territorial</h2>
+            <ul>
+                <li><strong>Generación de Empleos:</strong> Medición del impacto directo e indirecto en la comunidad seleccionada.</li>
+                <li><strong>Aumento de Ingresos Locales:</strong> Crecimiento de las ventas en la cadena de valor asociada al Ancla Turística.</li>
+                <li><strong>Inversión Apalancada:</strong> Cuantificación del efecto catalizador (inversión externa atraída por el proyecto Banamex).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- INICIO: PROGRAMA 2 (HECHO A MANO BANAMEX) - COMIENZA EN INDEX 6 -->
+
+    <!-- Slide 7: Programa 2 - Visión y Modelo (INDEX 6) -->
+    <div class="slide" id="slide7">
+        <button class="back-button" onclick="showSlide(1)">Volver</button>
+        <div class="max-w-4xl">
+            <h1 class="text-4xl">PROGRAMA 2: HECHO A MANO BANAMEX | MODELO Y VISIÓN</h1>
+            <h2 class="text-3xl">Profesionalización Integral y Capital Humano</h2>
+            <ul>
+                <li><strong>Misión:</strong> Cerrar la brecha entre el talento artístico y la gestión empresarial, promoviendo la **formalización** del sector.</li>
+                <li><strong>Audiencia:</strong> Artesanos, colectivos comunitarios y artistas emergentes que operan en la **informalidad** o con bajo acceso a *management*.</li>
+                <li><strong>Visión:</strong> El artista aprende a ser su propio **gestor de marca y CEO**, replicando modelos de élite (ej. Isaac Hernández).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 8: Programa 2 - Estructura del Ciclo (INDEX 7) -->
+    <div class="slide" id="slide8">
+        <button class="back-button" onclick="showSlide(1)">Volver</button>
+        <div class="max-w-4xl">
+            <h1 class="text-4xl">Hecho a Mano Banamex: Estructura del Ciclo (12 Meses)</h1>
+            <h2 class="text-3xl">De la Informalidad a la Bancabilidad</h2>
+            <ul>
+                <li><strong>Fase I: Formalización (Cuentas Claras):</strong> Inclusión financiera, **costeo justo**, y elección de figura jurídica.</li>
+                <li><strong>Fase II: Aceleración (Gestión Profesional):</strong> Masterclass "El Artista-Empresario" y uso de la **Propiedad Intelectual (PI) Activa**.</li>
+                <li><strong>Fase III: Mercado y Sostenibilidad:</strong> Conexión con el **Crédito "Talento Formal"** de Banamex y exposición en **Demo Day** de alto perfil.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 9: Programa 2 - Soluciones por Disciplina (INDEX 8) -->
+    <div class="slide" id="slide9">
+        <button class="back-button" onclick="showSlide(1)">Volver</button>
+        <div class="max-w-4xl">
+            <h1 class="text-4xl">Hecho a Mano Banamex: Desafíos Resueltos</h1>
+            <h2 class="text-3xl">Adaptación al Arte y la Economía Creativa</h2>
+            <ul>
+                <li><strong>Artesanía:</strong> Provee conocimiento sobre **costeo**, marca de origen y acceso a crédito para materia prima.</li>
+                <li><strong>Artes Vivas/Escénicas:</strong> Resuelve gestión de giras, **booking** y contratos de patrocinio.</li>
+                <li><strong>Música/Literatura:</strong> Enseña la gestión de **derechos de autor**, **royalties** y contratos editoriales/discográficos.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 10: Programa 2 - Métricas (INDEX 9) -->
+    <div class="slide" id="slide10">
+        <button class="back-button" onclick="showSlide(1)">Volver</button>
+        <div class="max-w-4xl">
+            <h1 class="text-4xl">Hecho a Mano Banamex: Medición de Impacto</h1>
+            <h2 class="text-3xl">Métricas centradas en la Inclusión Económica</h2>
+            <ul>
+                <li><strong>Bancabilidad:</strong> Porcentaje de graduados que obtienen el **Crédito "Talento Formal"** (mide la efectividad en la inclusión financiera).</li>
+                <li><strong>Aumento de Ingresos:</strong> Crecimiento porcentual del ingreso promedio de los colectivos formalizados.</li>
+                <li><strong>Formalización y PI:</strong> Número de **registros de Propiedad Intelectual** obtenidos y de entidades legalmente constituidas.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Slide 11: Comparativa Sintética (INDEX 10) -->
+    <div class="slide" id="slide11">
+        <button class="back-button" onclick="showSlide(1)">Volver</button>
+        <div class="max-w-5xl">
+            <h1 class="text-4xl">SÍNTESIS PARA LA ELECCIÓN: ¿CUÁL ELEGIR?</h1>
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">CRITERIO</th>
+                        <th style="width: 40%;" class="bg-red-700">RAÍCES DE PROGRESO (DAC Territorial)</th>
+                        <th style="width: 40%;" class="bg-gray-700">HECHO A MANO (Talento Formal)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-semibold bg-gray-100">FOCO DE INVERSIÓN</td>
+                        <td><strong>Activo Físico/Territorial:</strong> Restauración de patrimonio y cadena de valor local.</td>
+                        <td><strong>Capital Humano/Empresarial:</strong> Profesionalización de artistas y artesanos.</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold bg-gray-100">PRINCIPAL RETORNO</td>
+                        <td><strong>PIB Local:</strong> Generación de Empleo e <strong>Inversión Apalancada</strong> (Efecto Catalizador).</td>
+                        <td><strong>Inclusión Financiera:</strong> Bancabilidad, Formalización y Protección de **PI**.</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold bg-gray-100">VISIBILIDAD</td>
+                        <td><strong>Concentrada</strong> en una ubicación (Pueblo Mágico). Alta visibilidad de obra física.</td>
+                        <td><strong>Descentralizada</strong> a nivel nacional. Visibilidad de <strong>historias de éxito</strong> individuales.</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold bg-gray-100">ROL DE BANAMEX</td>
+                        <td><strong>Inversor Catalizador</strong> y "Sello de Confianza" para otros aliados.</td>
+                        <td><strong>Aceleradora Empresarial</strong> y Proveedor de Servicios Financieros (**Crédito "Talento Formal"**).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- Flechas Laterales de Navegación -->
+<button id="prevBtn" class="nav-arrow">‹</button>
+<button id="nextBtn" class="nav-arrow">›</button>
+
+<!-- Indicador de Slide: Arriba a la derecha -->
+<div id="slideIndicator" class="slide-indicator"></div>
+
+<script>
+    // Referencias a los elementos del DOM
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideIndicator = document.getElementById('slideIndicator');
+    
+    // Estado de la presentación
+    let currentSlideIndex = 0;
+    const totalSlides = slides.length; 
+
+    // Función para mostrar una diapositiva específica
+    // Esta función es usada por los botones de avance/retroceso y por los botones de navegación interna (Ver Programa, Volver).
+    function showSlide(index) {
+        // Ajustar el índice para que no se salga de los límites
+        if (index >= totalSlides) {
+            currentSlideIndex = totalSlides - 1;
+        } else if (index < 0) {
+            currentSlideIndex = 0;
+        } else {
+            currentSlideIndex = index;
+        }
+
+        // 1. Ocultar todas las diapositivas
+        slides.forEach(slide => {
+            slide.style.display = 'none';
+        });
+
+        // 2. Mostrar solo la diapositiva actual
+        slides[currentSlideIndex].style.display = 'flex';
+
+        // 3. Actualizar el estado de los botones laterales (desactivar en los extremos)
+        prevBtn.disabled = currentSlideIndex === 0;
+        nextBtn.disabled = currentSlideIndex === totalSlides - 1;
+
+        // 4. Actualizar el indicador de progreso
+        slideIndicator.textContent = `${currentSlideIndex + 1} / ${totalSlides}`;
+    }
+
+    // Función que maneja el cambio de diapositiva (+1 para Adelante, -1 para Atrás)
+    function changeSlide(step) {
+        showSlide(currentSlideIndex + step);
+    }
+
+    // Asignar eventos a los botones laterales
+    prevBtn.addEventListener('click', () => changeSlide(-1));
+    nextBtn.addEventListener('click', () => changeSlide(1));
+    
+    // Permitir navegación con las teclas de flecha
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') {
+            changeSlide(1);
+        } else if (event.key === 'ArrowLeft') {
+            changeSlide(-1);
+        }
+    });
+
+    // Inicializar la presentación en la primera diapositiva
+    showSlide(0);
+</script>
+
+</body>
+</html>
