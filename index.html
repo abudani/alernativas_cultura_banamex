@@ -71,14 +71,15 @@
 
         /* Estilo de los bullets (listas) */
         .slide ul {
-            max-width: 900px;
+            /* Max width se ajusta en el HTML, aquí se define el estilo de fuente */
             list-style: none;
             padding-left: 0;
             margin-top: 1.5rem;
+            width: 100%; /* Ocupa el 100% del contenedor padre (.max-w-5xl) */
         }
 
         .slide ul li {
-            font-size: 1.15rem;
+            font-size: 1.3rem; /* Incremento para mejor legibilidad */
             line-height: 1.8;
             margin-bottom: 1rem;
             padding-left: 2em;
@@ -110,7 +111,7 @@
         .compare-table th, .compare-table td {
             padding: 1rem;
             border: 1px solid #e5e7eb;
-            font-size: 1rem;
+            font-size: 1.05rem; /* Ligeramente más grande */
         }
 
         .compare-table th {
@@ -282,7 +283,7 @@
 
     <!-- Slide 1: Título y Contexto General (INDEX 0) -->
     <div class="slide" id="slide1">
-        <div class="max-w-4xl text-center">
+        <div class="max-w-5xl text-center">
             <h1 class="text-4xl">Programas de Fomento Social y Cultural de Banamex: alternativas de desarrollo</h1>
             <p class="text-2xl text-gray-600 mt-4">Análisis Comparativo para la Inversión Cultural Estratégica</p>
             <div class="mt-16 space-y-4">
@@ -320,7 +321,7 @@
     <!-- Slide 3: Programa 1 - Visión y Modelo (INDEX 2) -->
     <div class="slide" id="slide3">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-4xl">
+        <div class="max-w-5xl">
             <h1 class="text-4xl">PROGRAMA 1: RAÍCES DE PROGRESO | MODELO Y VISIÓN</h1>
             <h2 class="text-3xl">Inversión Catalizadora y Patrimonio Tangible</h2>
             <ul>
@@ -334,7 +335,7 @@
     <!-- Slide 4: Programa 1 - Fases de Intervención (INDEX 3) -->
     <div class="slide" id="slide4">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-4xl">
+        <div class="max-w-5xl">
             <h1 class="text-4xl">Raíces de Progreso: Fases de Intervención</h1>
             <h2 class="text-3xl">El Rol de Banamex como Catalizador</h2>
             <ul>
@@ -348,7 +349,7 @@
     <!-- Slide 5: Programa 1 - Sostenibilidad (INDEX 4) -->
     <div class="slide" id="slide5">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-4xl">
+        <div class="max-w-5xl">
             <h1 class="text-4xl">Raíces de Progreso: Autonomía y Perdurabilidad</h1>
             <h2 class="text-3xl">Mecanismos para la Sostenibilidad a Largo Plazo</h2>
             <ul>
@@ -362,7 +363,7 @@
     <!-- Slide 6: Programa 1 - Métricas (INDEX 5) -->
     <div class="slide" id="slide6">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-4xl">
+        <div class="max-w-5xl">
             <h1 class="text-4xl">Raíces de Progreso: Medición de Impacto (El "PIB Local")</h1>
             <h2 class="text-3xl">Métricas centradas en la transformación territorial</h2>
             <ul>
@@ -378,7 +379,7 @@
     <!-- Slide 7: Programa 2 - Visión y Modelo (INDEX 6) -->
     <div class="slide" id="slide7">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-4xl">
+        <div class="max-w-5xl">
             <h1 class="text-4xl">PROGRAMA 2: HECHO A MANO BANAMEX | MODELO Y VISIÓN</h1>
             <h2 class="text-3xl">Profesionalización Integral y Capital Humano</h2>
             <ul>
@@ -392,7 +393,7 @@
     <!-- Slide 8: Programa 2 - Estructura del Ciclo (INDEX 7) -->
     <div class="slide" id="slide8">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-4xl">
+        <div class="max-w-5xl">
             <h1 class="text-4xl">Hecho a Mano Banamex: Estructura del Ciclo (12 Meses)</h1>
             <h2 class="text-3xl">De la Informalidad a la Bancabilidad</h2>
             <ul>
@@ -406,7 +407,7 @@
     <!-- Slide 9: Programa 2 - Soluciones por Disciplina (INDEX 8) -->
     <div class="slide" id="slide9">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-4xl">
+        <div class="max-w-5xl">
             <h1 class="text-4xl">Hecho a Mano Banamex: Desafíos Resueltos</h1>
             <h2 class="text-3xl">Adaptación al Arte y la Economía Creativa</h2>
             <ul>
@@ -420,7 +421,7 @@
     <!-- Slide 10: Programa 2 - Métricas (INDEX 9) -->
     <div class="slide" id="slide10">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-4xl">
+        <div class="max-w-5xl">
             <h1 class="text-4xl">Hecho a Mano Banamex: Medición de Impacto</h1>
             <h2 class="text-3xl">Métricas centradas en la Inclusión Económica</h2>
             <ul>
@@ -543,3 +544,4 @@
 
 </body>
 </html>
+
