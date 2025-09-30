@@ -69,7 +69,7 @@
         }
         
         /* Asegura que <strong> sea visiblemente negrita */
-        .slide ul strong, .compare-table strong, .comparison-box strong {
+        .slide ul strong, .compare-table strong, .comparison-box strong, .pros-cons strong {
             font-weight: 800;
             color: #b91c1c; /* Las negritas en rojo para mayor énfasis */
         }
@@ -290,6 +290,67 @@
             margin-right: auto;
             text-align: left; /* Asegurar que el texto empiece a la izquierda */
         }
+        
+        /* Estilos para Pros y Contras */
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .pros-cons-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+        }
+
+        .pros-list, .cons-list {
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            list-style: none;
+        }
+
+        .pros-list {
+            border: 2px solid #b91c1c; /* Rojo para Pros */
+        }
+
+        .cons-list {
+            border: 2px solid #4b5563; /* Gris oscuro para Contras */
+        }
+
+        .pros-list h3, .cons-list h3 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .pros-list h3 {
+            color: #b91c1c;
+        }
+
+        .cons-list h3 {
+            color: #4b5563;
+        }
+
+        .pros-list li::before {
+            content: '✓'; 
+            color: #b91c1c;
+            font-size: 1.2em;
+            font-weight: 800;
+        }
+        
+        .cons-list li::before {
+            content: '✗'; 
+            color: #4b5563;
+            font-size: 1.2em;
+            font-weight: 800;
+        }
 
     </style>
 </head>
@@ -344,9 +405,9 @@
             <h1 class="text-4xl">PROGRAMA 1: RAÍCES DE PROGRESO | MODELO Y VISIÓN</h1>
             <h2 class="text-3xl">Inversión Catalizadora y Patrimonio Tangible</h2>
             <ul>
-                <li><strong>Misión:</strong> Transformar el <strong>patrimonio cultural tangible</strong> en un activo económico productivo para la comunidad.</li>
-                <li><strong>Foco:</strong> No es solo una donación, es un modelo que busca la **funcionalidad económica** del activo restaurado.</li>
-                <li><strong>Diseño DAC:</strong> El programa aprovecha la robustez del DAC, enfocándose en la **Perdurabilidad y Sostenibilidad Económica** del proyecto.</li>
+                <li><strong>Misión:</strong> Transformar el patrimonio cultural en un <strong>activo económico-productivo</strong> para la comunidad.</li>
+                <li><strong>Foco:</strong> Evolución del modelo DAC, centrado en la **orquestación de la activación económica local**.</li>
+                <li><strong>Diseño DAC:</strong> El programa busca la **funcionalidad económica** y la **Perdurabilidad y Sostenibilidad** del activo restaurado y su entorno.</li>
             </ul>
         </div>
     </div>
@@ -356,11 +417,11 @@
         <button class="back-button" onclick="showSlide(1)">Volver</button>
         <div class="content-wrapper">
             <h1 class="text-4xl">Raíces de Progreso: Fases de Intervención</h1>
-            <h2 class="text-3xl">El Rol de Banamex como Catalizador</h2>
+            <h2 class="text-3xl">De la Restauración a la Aceleración de la Economía Local</h2>
             <ul>
-                <li><strong>Fase I - Identificación:</strong> Banamex lidera el filtro técnico para seleccionar proyectos con alto potencial de retorno turístico ("Ancla Turística").</li>
-                <li><strong>Fase II - Intervención:</strong> Aportar el <strong>capital semilla</strong> para la restauración del Ancla y financiar el **Programa de Aceleración Local** (capacitación).</li>
-                <li><strong>Fase III - Multiplicador:</strong> Usar su prestigio como **"sello de confianza"** para atraer inversión de otros aliados ($X por cada $1 aportado por Banamex).</li>
+                <li><strong>Fase I - Identificación/Inversión Semilla:</strong> Capital semilla para restauración del **Activo Ancla** en comunidades con alto potencial turístico.</li>
+                <li><strong>Fase II - Aceleración de la Economía Local:</strong> Capacitación a toda la cadena de valor (hotelería, gastronomía, logística) para gestionar el nuevo flujo de visitantes.</li>
+                <li><strong>Fase III - Apalancamiento:</strong> Banamex como **"sello de confianza"** para atraer a otros aliados e inversionistas, multiplicando la inversión inicial.</li>
             </ul>
         </div>
     </div>
@@ -370,11 +431,11 @@
         <button class="back-button" onclick="showSlide(1)">Volver</button>
         <div class="content-wrapper">
             <h1 class="text-4xl">Raíces de Progreso: Autonomía y Perdurabilidad</h1>
-            <h2 class="text-3xl">Mecanismos para la Sostenibilidad a Largo Plazo</h2>
+            <h2 class="text-3xl">Mecanismos de Gobernanza y Mitigación de Riesgos</h2>
             <ul>
-                <li><strong>Fondo de Mantenimiento:</strong> Creación de un **Fondo Comunitario** nutrido por un porcentaje de las ventas turísticas para asegurar el mantenimiento del activo.</li>
-                <li><strong>Enfoque:</strong> Monitorear KPIs de generación de ingresos para asegurar la **autonomía financiera** del proyecto restaurado.</li>
-                <li><strong>Estrategia:</strong> Generar flujo turístico y apalancar la inversión pública/privada en la comunidad.</li>
+                <li><strong>Alianzas Multi-sectoriales:</strong> La formalización de acuerdos con los **tres niveles de gobierno** es un **prerrequisito no negociable** para la selección del proyecto.</li>
+                <li><strong>Fondo de Mantenimiento:</strong> Creación de un **Fondo Comunitario** para asegurar el mantenimiento del activo a futuro.</li>
+                <li><strong>Estrategia de Entrada y Salida:</strong> Diseñar el proyecto con un **fin definido** para evitar "eternizar" la intervención, transfiriendo responsabilidades a la comunidad.</li>
             </ul>
         </div>
     </div>
@@ -383,12 +444,12 @@
     <div class="slide" id="slide6">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
         <div class="content-wrapper">
-            <h1 class="text-4xl">Raíces de Progreso: Medición de Impacto (El "PIB Local")</h1>
-            <h2 class="text-3xl">Métricas centradas en la transformación territorial</h2>
+            <h1 class="text-4xl">Raíces de Progreso: Medición de Impacto (Macroeconómico)</h1>
+            <h2 class="text-3xl">Métricas centradas en la transformación territorial y el PIB Local</h2>
             <ul>
-                <li><strong>Generación de Empleos:</strong> Medición del impacto directo e indirecto en la comunidad seleccionada.</li>
-                <li><strong>Aumento de Ingresos Locales:</strong> Crecimiento de las ventas en la cadena de valor asociada al Ancla Turística.</li>
-                <li><strong>Inversión Apalancada:</strong> Cuantificación del efecto catalizador (inversión externa atraída por el proyecto Banamex).</li>
+                <li><strong>Creación de Empleos:</strong> Medición de nuevos puestos de trabajo directos e indirectos generados en la comunidad.</li>
+                <li><strong>Aumento de Ventas Locales:</strong> Crecimiento en la cadena de valor (hoteles, restaurantes, servicios turísticos).</li>
+                <li><strong>Inversión Apalancada:</strong> Fondos adicionales atraídos de otros aliados, cuantificando el efecto catalizador.</li>
             </ul>
         </div>
     </div>
@@ -400,11 +461,11 @@
         <button class="back-button" onclick="showSlide(1)">Volver</button>
         <div class="content-wrapper">
             <h1 class="text-4xl">PROGRAMA 2: HECHO A MANO BANAMEX | MODELO Y VISIÓN</h1>
-            <h2 class="text-3xl">Profesionalización Integral y Capital Humano</h2>
+            <h2 class="text-3xl">Profesionalización Integral y Motor Económico Formal</h2>
             <ul>
-                <li><strong>Misión:</strong> Cerrar la brecha entre el talento artístico y la gestión empresarial, promoviendo la **formalización** del sector.</li>
-                <li><strong>Audiencia:</strong> Artesanos, colectivos comunitarios y artistas emergentes que operan en la **informalidad** o con bajo acceso a *management*.</li>
-                <li><strong>Visión:</strong> El artista aprende a ser su propio **gestor de marca y CEO**, replicando modelos de élite (ej. Isaac Hernández).</li>
+                <li><strong>Misión:</strong> Transitar de valorar el arte a potenciarlo como un **motor económico formal**, cerrando la brecha entre talento y **gestión empresarial**.</li>
+                <li><strong>Audiencia:</strong> Artesanos, colectivos comunitarios y artistas emergentes que operan en la **informalidad**.</li>
+                <li><strong>Mecanismo de Alcance:</strong> Implementar una **Convocatoria Pública Nacional** (similar a formatos tipo "La Voz") para identificar talento de manera masiva y descentralizada.</li>
             </ul>
         </div>
     </div>
@@ -416,9 +477,9 @@
             <h1 class="text-4xl">Hecho a Mano Banamex: Estructura del Ciclo (12 Meses)</h1>
             <h2 class="text-3xl">De la Informalidad a la Bancabilidad</h2>
             <ul>
-                <li><strong>Fase I: Formalización (Cuentas Claras):</strong> Inclusión financiera, **costeo justo**, y elección de figura jurídica.</li>
-                <li><strong>Fase II: Aceleración (Gestión Profesional):</strong> Masterclass "El Artista-Empresario" y uso de la **Propiedad Intelectual (PI) Activa**.</li>
-                <li><strong>Fase III: Mercado y Sostenibilidad:</strong> Conexión con el **Crédito "Talento Formal"** de Banamex y exposición en **Demo Day** de alto perfil.</li>
+                <li><strong>Fase I: Formalización:</strong> Inclusión financiera, **costeo justo**, figura jurídica y protección de la Propiedad Intelectual.</li>
+                <li><strong>Fase II: Aceleración:</strong> Masterclasses y mentoría de élite para posicionar al artista como **CEO y gestor de marca**.</li>
+                <li><strong>Fase III: Seguimiento Post-Programa:</strong> Implementar un plan de **acompañamiento a mediano plazo** (ej. 3 años) para asegurar la sostenibilidad real.</li>
             </ul>
         </div>
     </div>
@@ -428,7 +489,7 @@
         <button class="back-button" onclick="showSlide(1)">Volver</button>
         <div class="content-wrapper">
             <h1 class="text-4xl">Hecho a Mano Banamex: Desafíos Resueltos</h1>
-            <h2 class="text-3xl">Adaptación al Arte y la Economía Creativa</h2>
+            <h2 class="text-3xl">Soluciones a la Informalidad en la Economía Creativa</h2>
             <ul>
                 <li><strong>Artesanía:</strong> Provee conocimiento sobre **costeo**, marca de origen y acceso a crédito para materia prima.</li>
                 <li><strong>Artes Vivas/Escénicas:</strong> Resuelve gestión de giras, **booking** y contratos de patrocinio.</li>
@@ -444,19 +505,69 @@
             <h1 class="text-4xl">Hecho a Mano Banamex: Medición de Impacto</h1>
             <h2 class="text-3xl">Métricas centradas en la Inclusión Económica</h2>
             <ul>
-                <li><strong>Bancabilidad:</strong> Porcentaje de graduados que obtienen el **Crédito "Talento Formal"** (mide la efectividad en la inclusión financiera).</li>
-                <li><strong>Aumento de Ingresos:</strong> Crecimiento porcentual del ingreso promedio de los colectivos formalizados.</li>
-                <li><strong>Formalización y PI:</strong> Número de **registros de Propiedad Intelectual** obtenidos y de entidades legalmente constituidas.</li>
+                <li><strong>Bancabilidad:</strong> Porcentaje de graduados que obtienen el **Crédito "Talento Formal"** (alineado al *core business*).</li>
+                <li><strong>Formalización y PI:</strong> Número de **registros de Propiedad Intelectual** y de empresas legalmente constituidas.</li>
+                <li><strong>Crecimiento Sostenible:</strong> Aumento de ingresos verificable y **sostenibilidad del emprendimiento** (medido post-programa).</li>
             </ul>
         </div>
     </div>
-    
-    <!-- Slide 11: Comparativa Sintética (INDEX 10) -->
+
+    <!-- Slide 11: Pros y Contras Raíces de Progreso (INDEX 10) -->
     <div class="slide" id="slide11">
+        <button class="back-button" onclick="showSlide(1)">Volver</button>
+        <div class="content-wrapper text-center">
+            <h1 class="text-4xl text-center">PROS Y CONTRAS: RAÍCES DE PROGRESO</h1>
+            <h2 class="text-3xl text-center">Foco en Inversión Territorial y Patrimonio</h2>
+            <div class="pros-cons-grid mx-auto">
+                <ul class="pros-list w-full">
+                    <h3>Puntos a Favor (Potencial Estratégico)</h3>
+                    <li>Impacto **profundo y transformador** que genera un cambio sistémico en la comunidad.</li>
+                    <li>Alta **visibilidad física** y potencia narrativa, un símbolo tangible para la marca.</li>
+                    <li>Fuerte **efecto catalizador** para atraer inversión apalancada.</li>
+                    <li>Modelo probado y percibido como una **evolución natural** de la historia de Fomento Cultural.</li>
+                </ul>
+                <ul class="cons-list w-full">
+                    <h3>Riesgos y Desafíos (Consideraciones Operativas)</h3>
+                    <li>**Alto costo inicial** y **concentración de recursos** en una sola comunidad.</li>
+                    <li>Resultados tangibles a **mediano y largo plazo** (4 a 10 años).</li>
+                    <li>Dependencia crítica de **alianzas externas** (gobierno y comunidad).</li>
+                    <li>Riesgo de **"eternizar"** proyectos si no se aplica la estrategia de salida definida.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Pros y Contras Hecho a Mano Banamex (INDEX 11) -->
+    <div class="slide" id="slide12">
+        <button class="back-button" onclick="showSlide(1)">Volver</button>
+        <div class="content-wrapper text-center">
+            <h1 class="text-4xl text-center">PROS Y CONTRAS: HECHO A MANO BANAMEX</h1>
+            <h2 class="text-3xl text-center">Foco en Talento Individual y Formalización</h2>
+            <div class="pros-cons-grid mx-auto">
+                <ul class="pros-list w-full">
+                    <h3>Puntos a Favor (Potencial Estratégico)</h3>
+                    <li>**Bajo costo operativo** por beneficiario, comparado con la restauración.</li>
+                    <li>Alcance **nacional y descentralizado** a través de la convocatoria pública.</li>
+                    <li>Fomento directo a la **inclusión financiera** y al *core business* del banco (formalización, bancarización, crédito).</li>
+                    <li>**Flexibilidad y adaptabilidad** para perfilar y acotar disciplinas artísticas.</li>
+                </ul>
+                <ul class="cons-list w-full">
+                    <h3>Riesgos y Desafíos (Consideraciones Operativas)</h3>
+                    <li>Alto **porcentaje de fracaso** inherente al modelo de emprendimiento (solo 3 de cada 10 proyectos sobreviven).</li>
+                    <li>**Complejidad logística** de gestionar un portafolio nacional y diverso de proyectos individuales.</li>
+                    <li>Riesgo de **perder el foco cultural** al priorizar lo comercial.</li>
+                    <li>**Menor visibilidad** de la inversión física para la marca Banamex.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Comparativa Sintética FINAL (INDEX 12) -->
+    <div class="slide" id="slide13">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
         <!-- Aquí usamos mx-auto solo para centrar la tabla, pero la tabla tiene 90% de width -->
         <div class="content-wrapper text-center">
-            <h1 class="text-4xl text-center">SÍNTESIS PARA LA ELECCIÓN: ¿CUÁL ELEGIR?</h1>
+            <h1 class="text-4xl text-center">SÍNTESIS PARA LA ELECCIÓN FINAL</h1>
             <table class="compare-table mx-auto">
                 <thead>
                     <tr>
@@ -468,26 +579,41 @@
                 <tbody>
                     <tr>
                         <td class="font-semibold bg-gray-100">FOCO DE INVERSIÓN</td>
-                        <td><strong>Activo Físico/Territorial:</strong> Restauración de patrimonio y cadena de valor local.</td>
-                        <td><strong>Capital Humano/Empresarial:</strong> Profesionalización de artistas y artesanos.</td>
+                        <td><strong>Activo Físico/Territorial</strong> y activación económica local.</td>
+                        <td><strong>Capital Humano</strong> y profesionalización empresarial.</td>
                     </tr>
                     <tr>
                         <td class="font-semibold bg-gray-100">PRINCIPAL RETORNO</td>
-                        <td><strong>PIB Local:</strong> Generación de Empleo e <strong>Inversión Apalancada</strong> (Efecto Catalizador).</td>
-                        <td><strong>Inclusión Financiera:</strong> Bancabilidad, Formalización y Protección de **PI**.</td>
+                        <td><strong>PIB Local</strong>, Empleo e **Inversión Apalancada**.</td>
+                        <td><strong>Inclusión Financiera</strong>, Bancabilidad y Protección de **PI**.</td>
                     </tr>
                     <tr>
-                        <td class="font-semibold bg-gray-100">VISIBILIDAD</td>
-                        <td><strong>Concentrada</strong> en una ubicación (Pueblo Mágico). Alta visibilidad de obra física.</td>
-                        <td><strong>Descentralizada</strong> a nivel nacional. Visibilidad de <strong>historias de éxito</strong> individuales.</td>
+                        <td class="font-semibold bg-gray-100">RIESGO PRINCIPAL</td>
+                        <td>Concentración de recursos y riesgo de **"eternizar"** la intervención.</td>
+                        <td>Alto **porcentaje de fracaso** inherente del emprendimiento.</td>
                     </tr>
                     <tr>
                         <td class="font-semibold bg-gray-100">ROL DE BANAMEX</td>
-                        <td><strong>Inversor Catalizador</strong> y "Sello de Confianza" para otros aliados.</td>
-                        <td><strong>Aceleradora Empresarial</strong> y Proveedor de Servicios Financieros (**Crédito "Talento Formal"**).</td>
+                        <td>**Inversor Catalizador** y garante del desarrollo territorial.</td>
+                        <td>**Aceleradora Empresarial** y Proveedor de Crédito/Servicios Financieros.</td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+    
+    <!-- NUEVA SLIDE 14: Sinergia y Hoja de Ruta (INDEX 13) -->
+    <div class="slide" id="slide14">
+        <button class="back-button" onclick="showSlide(1)">Volver</button>
+        <div class="content-wrapper">
+            <h1 class="text-4xl">HOJA DE RUTA: SINERGIA Y VALOR INTEGRADO</h1>
+            <h2 class="text-3xl">La Decisión no es Binaria: Cómo se Refuerzan Mutuamente</h2>
+            <ul>
+                <li><strong>Hecho a Mano como Semillero:</strong> El programa nacional actúa como un **filtro y semillero de talento** y colectivos que alcanzan la formalización.</li>
+                <li><strong>Candidatos a Profundidad:</strong> Los participantes más prometedores de **Hecho a Mano** se convierten en **candidatos ideales** para una intervención territorial profunda de Raíces de Progreso.</li>
+                <li><strong>Portafolio Diversificado:</strong> La combinación permite lograr **alcance ágil y descentralizado** (Hecho a Mano) con **impacto profundo y transformador** (Raíces de Progreso).</li>
+                <li><strong>Recomendación Estratégica:</strong> Implementar ambos modelos de forma **secuenciada y complementaria** para consolidar el liderazgo en inversión social y cultural.</li>
+            </ul>
         </div>
     </div>
 
@@ -510,7 +636,7 @@
     
     // Estado de la presentación
     let currentSlideIndex = 0;
-    const totalSlides = slides.length; 
+    const totalSlides = slides.length; // Ahora 14
 
     // Función para mostrar una diapositiva específica
     // Esta función es usada por los botones de avance/retroceso y por los botones de navegación interna (Ver Programa, Volver).
@@ -564,5 +690,4 @@
 
 </body>
 </html>
-
 
