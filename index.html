@@ -31,28 +31,31 @@
             flex-shrink: 0;
             display: none;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem 1.5rem; /* Ajuste de padding para ganar espacio en móvil */
+            /* Contenido anclado arriba y centrado horizontalmente */
+            justify-content: flex-start; 
+            align-items: center;     
+            padding: 2rem 1.5rem; 
+            padding-top: 5rem; /* Margen superior para evitar el borde */
             box-sizing: border-box;
             background-color: white;
-            position: relative; /* Necesario para posicionar el botón Volver */
+            position: relative; 
         }
         
         /* Ajuste de padding para pantallas más grandes */
         @media (min-width: 768px) {
             .slide {
                 padding: 2rem 4rem;
+                padding-top: 5rem;
             }
         }
 
 
-        /* Estilo de los títulos (Rojo y Gris Oscuro) - AHORA USANDO CLAMP PARA ESCALADO */
+        /* Estilo de los títulos (Rojo y Gris Oscuro) - ESCALADO */
         .slide h1 {
             color: #b91c1c; /* Rojo fuerte (Tailwind red-700) */
             font-weight: 800; /* Más peso para títulos */
             margin-bottom: 1.5rem;
-            text-align: center;
+            text-align: left; 
             /* AUMENTO AGRESIVO: Mínimo 2.5rem, ideal 5.5vw, máximo 3.2rem */
             font-size: clamp(2.5rem, 5.5vw, 3.2rem); 
         }
@@ -184,7 +187,7 @@
             flex-direction: column; /* Apila por defecto para responsive */
             gap: 2rem; /* Reducido el gap */
             margin-top: 3rem;
-            max-width: 900px;
+            max-width: 900px; /* Mantener este ancho para que las cajas se vean bien */
             width: 100%;
         }
         
@@ -198,7 +201,7 @@
 
         .comparison-box {
             flex: 1;
-            padding: 1.5rem; /* Reducido el padding para caber mejor */
+            padding: 1.5rem; 
             border: 2px solid #e5e7eb;
             border-radius: 0.75rem;
             text-align: center;
@@ -278,6 +281,15 @@
         .btn-gray:hover {
             background-color: #374151;
         }
+        
+        /* Clases de contenido para controlar el flujo de izquierda a derecha */
+        .content-wrapper {
+            width: 95%; /* Usar casi todo el ancho disponible */
+            max-width: 1400px; /* Permitir un ancho máximo mayor */
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left; /* Asegurar que el texto empiece a la izquierda */
+        }
 
     </style>
 </head>
@@ -287,9 +299,10 @@
 
     <!-- Slide 1: Título y Contexto General (INDEX 0) -->
     <div class="slide" id="slide1">
-        <div class="max-w-5xl text-center">
-            <h1 class="text-4xl">Programas de Fomento Social y Cultural de Banamex: alternativas de desarrollo</h1>
-            <p class="text-2xl text-gray-600 mt-4">Análisis Comparativo para la Inversión Cultural Estratégica</p>
+        <!-- Contenido centrado -->
+        <div class="content-wrapper text-center"> 
+            <h1 class="text-4xl text-center">Programas de Fomento Social y Cultural de Banamex: alternativas de desarrollo</h1>
+            <p class="text-2xl text-gray-600 mt-4 text-center">Análisis Comparativo para la Inversión Cultural Estratégica</p>
             <div class="mt-16 space-y-4">
                 <p class="text-xl font-semibold text-red-700">Alternativa A: Cultura que Inspira: Raíces de Progreso (Foco Territorial)</p>
                 <p class="text-xl font-semibold text-gray-700">Alternativa B: Hecho a Mano Banamex: Economía Cultural Formal (Foco Talento)</p>
@@ -299,25 +312,27 @@
 
     <!-- Slide 2: Comparación de Modelos (INDEX 1) - FUENTE PARA BOTÓN VOLVER -->
     <div class="slide" id="slide2">
-        <h1 class="text-4xl">OBJETIVOS CENTRALES: ¿QUÉ BUSCAN LOS PROGRAMAS?</h1>
-        <h2 class="text-3xl">Dos Modelos, Dos Tipos de Impacto</h2>
-        
-        <div class="comparison-container">
-            <div class="comparison-box territorial">
-                <h3>Raíces de Progreso (Modelo Pueblo Mágico)</h3>
-                <p class="text-base">Se enfoca en el <strong>territorio</strong> y el <strong>patrimonio físico</strong> como motor económico.</p>
-                <p class="mt-4 text-gray-600 text-sm"><strong>Meta:</strong> Generar desarrollo económico a través de la restauración y la cadena de valor turística. <strong>Impacto Colectivo</strong>.</p>
-                <button class="program-select-button btn-red" onclick="showSlide(2)">Ver Programa 1</button>
-            </div>
+        <div class="content-wrapper">
+            <h1 class="text-4xl">OBJETIVOS CENTRALES: ¿QUÉ BUSCAN LOS PROGRAMAS?</h1>
+            <h2 class="text-3xl">Dos Modelos, Dos Tipos de Impacto</h2>
             
-            <div class="comparison-box talent">
-                <h3>Hecho a Mano (Modelo Isaac Hernández)</h3>
-                <p class="text-base">Se enfoca en el <strong>talento individual</strong> y la <strong>profesionalización empresarial</strong>.</p>
-                <p class="mt-4 text-gray-600 text-sm"><strong>Meta:</strong> Convertir la creatividad en un negocio formal, bancable y sostenible. <strong>Impacto Individual/Empresarial</strong>.</p>
-                <button class="program-select-button btn-gray" onclick="showSlide(6)">Ver Programa 2</button>
+            <div class="comparison-container mx-auto">
+                <div class="comparison-box territorial">
+                    <h3>Raíces de Progreso (Modelo Pueblo Mágico)</h3>
+                    <p class="text-base">Se enfoca en el <strong>territorio</strong> y el <strong>patrimonio físico</strong> como motor económico.</p>
+                    <p class="mt-4 text-gray-600 text-sm"><strong>Meta:</strong> Generar desarrollo económico a través de la restauración y la cadena de valor turística. <strong>Impacto Colectivo</strong>.</p>
+                    <button class="program-select-button btn-red" onclick="showSlide(2)">Ver Programa 1</button>
+                </div>
+                
+                <div class="comparison-box talent">
+                    <h3>Hecho a Mano (Modelo Isaac Hernández)</h3>
+                    <p class="text-base">Se enfoca en el <strong>talento individual</strong> y la <strong>profesionalización empresarial</strong>.</p>
+                    <p class="mt-4 text-gray-600 text-sm"><strong>Meta:</strong> Convertir la creatividad en un negocio formal, bancable y sostenible. <strong>Impacto Individual/Empresarial</strong>.</p>
+                    <button class="program-select-button btn-gray" onclick="showSlide(6)">Ver Programa 2</button>
+                </div>
             </div>
+            <p class="mt-8 text-lg text-gray-500 text-center">O use las flechas laterales para la revisión completa y la síntesis final.</p>
         </div>
-        <p class="mt-8 text-lg text-gray-500">O use las flechas laterales para la revisión completa y la síntesis final.</p>
     </div>
     
     <!-- INICIO: PROGRAMA 1 (RAÍCES DE PROGRESO) - COMIENZA EN INDEX 2 -->
@@ -325,7 +340,7 @@
     <!-- Slide 3: Programa 1 - Visión y Modelo (INDEX 2) -->
     <div class="slide" id="slide3">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-5xl">
+        <div class="content-wrapper">
             <h1 class="text-4xl">PROGRAMA 1: RAÍCES DE PROGRESO | MODELO Y VISIÓN</h1>
             <h2 class="text-3xl">Inversión Catalizadora y Patrimonio Tangible</h2>
             <ul>
@@ -339,7 +354,7 @@
     <!-- Slide 4: Programa 1 - Fases de Intervención (INDEX 3) -->
     <div class="slide" id="slide4">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-5xl">
+        <div class="content-wrapper">
             <h1 class="text-4xl">Raíces de Progreso: Fases de Intervención</h1>
             <h2 class="text-3xl">El Rol de Banamex como Catalizador</h2>
             <ul>
@@ -353,7 +368,7 @@
     <!-- Slide 5: Programa 1 - Sostenibilidad (INDEX 4) -->
     <div class="slide" id="slide5">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-5xl">
+        <div class="content-wrapper">
             <h1 class="text-4xl">Raíces de Progreso: Autonomía y Perdurabilidad</h1>
             <h2 class="text-3xl">Mecanismos para la Sostenibilidad a Largo Plazo</h2>
             <ul>
@@ -367,7 +382,7 @@
     <!-- Slide 6: Programa 1 - Métricas (INDEX 5) -->
     <div class="slide" id="slide6">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-5xl">
+        <div class="content-wrapper">
             <h1 class="text-4xl">Raíces de Progreso: Medición de Impacto (El "PIB Local")</h1>
             <h2 class="text-3xl">Métricas centradas en la transformación territorial</h2>
             <ul>
@@ -383,7 +398,7 @@
     <!-- Slide 7: Programa 2 - Visión y Modelo (INDEX 6) -->
     <div class="slide" id="slide7">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-5xl">
+        <div class="content-wrapper">
             <h1 class="text-4xl">PROGRAMA 2: HECHO A MANO BANAMEX | MODELO Y VISIÓN</h1>
             <h2 class="text-3xl">Profesionalización Integral y Capital Humano</h2>
             <ul>
@@ -397,7 +412,7 @@
     <!-- Slide 8: Programa 2 - Estructura del Ciclo (INDEX 7) -->
     <div class="slide" id="slide8">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-5xl">
+        <div class="content-wrapper">
             <h1 class="text-4xl">Hecho a Mano Banamex: Estructura del Ciclo (12 Meses)</h1>
             <h2 class="text-3xl">De la Informalidad a la Bancabilidad</h2>
             <ul>
@@ -411,7 +426,7 @@
     <!-- Slide 9: Programa 2 - Soluciones por Disciplina (INDEX 8) -->
     <div class="slide" id="slide9">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-5xl">
+        <div class="content-wrapper">
             <h1 class="text-4xl">Hecho a Mano Banamex: Desafíos Resueltos</h1>
             <h2 class="text-3xl">Adaptación al Arte y la Economía Creativa</h2>
             <ul>
@@ -425,7 +440,7 @@
     <!-- Slide 10: Programa 2 - Métricas (INDEX 9) -->
     <div class="slide" id="slide10">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-5xl">
+        <div class="content-wrapper">
             <h1 class="text-4xl">Hecho a Mano Banamex: Medición de Impacto</h1>
             <h2 class="text-3xl">Métricas centradas en la Inclusión Económica</h2>
             <ul>
@@ -439,9 +454,10 @@
     <!-- Slide 11: Comparativa Sintética (INDEX 10) -->
     <div class="slide" id="slide11">
         <button class="back-button" onclick="showSlide(1)">Volver</button>
-        <div class="max-w-5xl">
-            <h1 class="text-4xl">SÍNTESIS PARA LA ELECCIÓN: ¿CUÁL ELEGIR?</h1>
-            <table class="compare-table">
+        <!-- Aquí usamos mx-auto solo para centrar la tabla, pero la tabla tiene 90% de width -->
+        <div class="content-wrapper text-center">
+            <h1 class="text-4xl text-center">SÍNTESIS PARA LA ELECCIÓN: ¿CUÁL ELEGIR?</h1>
+            <table class="compare-table mx-auto">
                 <thead>
                     <tr>
                         <th style="width: 20%;">CRITERIO</th>
@@ -548,4 +564,5 @@
 
 </body>
 </html>
+
 
